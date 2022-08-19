@@ -30,14 +30,14 @@ jobs:
     runs-on: ubuntu-latest
     environment: 
       name: 'Staging'
-      url: http://tp1-crud-master.herokuapp.com/
+      url: https://staging-ci-cd-test.herokuapp.com/
     needs: [Import_SQL]
     steps:
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "tp1-crud-master" #Must be unique in Heroku
+          heroku_api_key: ${{secrets.HEROKU_API_KEY_STAGING}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME_STAGING}} #Must be unique in Heroku
           heroku_email: "gastonbarbaccia@hotmail.com"
 
   Deploy_production:
@@ -46,12 +46,12 @@ jobs:
     runs-on: ubuntu-latest
     environment: 
       name: 'Production'
-      url: http://tp1-crud-master.herokuapp.com/
+      url: https://prod-ci-cd-test.herokuapp.com/
     needs: [Deploy_staging]
     steps:
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "tp1-crud-master" #Must be unique in Heroku
+          heroku_api_key: ${{secrets.HEROKU_API_KEY_PRODUCTION}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME_PRODUCTION}} #Must be unique in Heroku
           heroku_email: "gastonbarbaccia@hotmail.com"
