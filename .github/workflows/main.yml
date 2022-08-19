@@ -1,4 +1,4 @@
-name: CI
+name: Template v1.0
 
 on:
   push:
